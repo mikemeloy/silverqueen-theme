@@ -1,0 +1,8 @@
+﻿@model string
+<div class="selected-checkout-attributes">
+	@Html.Raw(Model
+		.Replace("Is Order Over $10,000.00: No", string.Empty)
+		.Replace("Is Order Over $10,000.00: Yes", string.Empty)
+		.Trim()
+	)
+</div>

@@ -1,0 +1,15 @@
+﻿@model TopicModel
+@if (!Model.IsPasswordProtected)
+{
+    <div class="row">
+        <div class="col-md-4 sidebar sq-simple-menu">
+            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "MenuCompanyPolicy" })
+        </div>
+        <div class="col-md-8 tg-import">
+            @if (!string.IsNullOrEmpty(Model.Body)) {
+                @Html.Raw(Model.Body)
+                <script src="https://app.termageddon.com/js/termageddon.js"></script>
+            }
+        </div>
+    </div>
+}

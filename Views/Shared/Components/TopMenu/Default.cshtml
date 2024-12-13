@@ -1,0 +1,238 @@
+﻿@model TopMenuModel
+@using Nop.Core.Domain.Catalog
+@using Nop.Core.Domain.Topics
+
+<div class="main-menu">
+    <nav class="navbar navbar-site category-menu">
+        <div class="navbar-brand navbar-site-logo hide">
+            @await Component.InvokeAsync(typeof(LogoViewComponent))
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="mobile-menu" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                    <li class="dropdown megamenu"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle"
+                            href="/fine-jewelry" role="button" aria-expanded="false"> Fine Jewelry </a>
+                        <ul class="dropdown-menu sub-menusublist first-level" role="menu">
+                            <li><a href="/fine-jewelry-bridal"> Bridal </a></li>
+                            <li><a href="/fine-jewelry-rings"> Rings </a></li>
+                            <li><a href="/fine-jewelry-necklaces"> Necklaces </a></li>
+                            <li><a href="/fine-jewelry-earrings"> Earrings </a></li>
+                            <li><a href="/fine-jewelry-bracelets"> Bracelets </a></li>
+                            <li><a href="/fine-jewelry-charms-pendants"> Charms &amp; Pendants </a></li>
+                            <li><a href="/fine-jewelry-brooches-pins"> Brooches &amp; Pins </a></li>
+                            <li><a href="/fine-jewelry-chains"> Chains </a></li>
+                            <li><a href="/fine-jewelry-coin-jewelry"> Coin Jewelry </a></li>
+                            <li class="image hidden-xs hidden-sm"><a href="/fine-jewelry"><img src="/images/thumbs/0000878_fine-jewelry_450.png" alt="Fine Jewelry" /><span class="caption">Fine Jewelry from SilverQueen</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown megamenu"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle"
+                            href="/vintage-antique" role="button" aria-expanded="false"> Vintage &amp; Antique </a>
+                        <ul class="dropdown-menu fivecol sub-menusublist first-level" role="menu">
+                            <li><a href="/vintage-antique-bridal"> Bridal </a></li>
+                            <li><a href="/vintage-antique-rings"> Rings </a></li>
+                            <li><a href="/vintage-antique-necklaces"> Necklaces </a></li>
+                            <li><a href="/vintage-antique-earrings"> Earrings </a></li>
+                            <li><a href="/vintage-antique-bracelets"> Bracelets </a></li>
+                            <li><a href="/vintage-antique-charms-pendants"> Charms &amp; Pendants </a></li>
+                            <li><a href="/vintage-antique-brooches-pins"> Brooches &amp; Pins </a></li>
+                            <li><a href="/vintage-antique-chains"> Chains </a></li>
+                            <li><a href="/vintage-antique-coin-jewelry"> Coin Jewelry </a></li>
+                            <li><a href="/vintage-antique-cufflinks-studs"> Cufflinks &amp; Studs </a></li>
+                            <li><a href="/vintage-antique-tie-clips"> Tie Clips </a></li>
+                            <li class="image hidden-xs hidden-sm"><a href="/vintage-antique"><img src="/images/thumbs/0000879_vintage-antique_450.png" alt="Vintage Jewelry" /><span class="caption">Vintage Jewelry from SilverQueen — Your new heirlooms</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown megamenu"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle"
+                            href="/fashion-jewelry" role="button" aria-expanded="false"> Fashion Jewelry </a>
+                        <ul class="dropdown-menu sub-menusublist first-level" role="menu">
+                            <li><a href="/fashion-jewelry-rings"> Rings </a></li>
+                            <li><a href="/fashion-jewelry-necklaces"> Necklaces </a></li>
+                            <li><a href="/fashion-jewelry-earrings"> Earrings </a></li>
+                            <li><a href="/fashion-jewelry-bracelets"> Bracelets </a></li>
+                            <li><a href="/fashion-jewelry-charms-pendants"> Charms &amp; Pendants </a></li>
+                            <li><a href="/fashion-jewelry-brooches-pins"> Brooches &amp; Pins </a></li>
+                            <li><a href="/fashion-jewelry-julie-vos"> Julie Vos </a></li>
+                            <li><a href="/fashion-jewelry-brand-names"> Brand Names </a></li>
+                            <li class="image hidden-xs hidden-sm"><a href="/fashion-jewelry"><img src="/images/thumbs/0000883_fashion-jewelry_450.jpeg" alt="Fashion Jewelry" /><span class="caption">Fashion Jewelry from SilverQueen</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown megamenu"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle"
+                            href="/silver-jewelry" role="button" aria-expanded="false"> Silver Jewelry </a>
+                        <ul class="dropdown-menu sub-menusublist first-level" role="menu">
+                            <li><a href="/silver-jewelry-rings"> Rings </a></li>
+                            <li><a href="/silver-jewelry-necklaces"> Necklaces </a></li>
+                            <li><a href="/silver-jewelry-earrings"> Earrings </a></li>
+                            <li><a href="/silver-jewelry-bracelets"> Bracelets </a></li>
+                            <li><a href="/silver-jewelry-charms-pendants"> Charms &amp; Pendants </a></li>
+                            <li><a href="/silver-jewelry-brooches-pins"> Brooches &amp; Pins </a></li>
+                            <li><a href="/silver-jewelry-chains"> Chains </a></li>
+                            <li class="image hidden-xs hidden-sm"><a href="/silver-jewelry"><img src="/images/thumbs/0000912_silver-jewelry_450.png" alt="Silver Jewelry" /><span class="caption">Silver Jewelry from SilverQueen</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle" href="/watches"
+                            role="button" aria-expanded="false"> Watches </a>
+                        <ul class="dropdown-menu sub-menusublist first-level" role="menu">
+                            <li><a href="/watches-luxury-estate-refurbished"> Luxury Estate Refurbished </a></li>
+                            <li><a href="/watches-new"> New </a></li>
+                            <li><a href="/watches-chains"> Chains </a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown megamenu"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle" href="/mens"
+                            role="button" aria-expanded="false"> Men's </a>
+                        <ul class="dropdown-menu fivecol sub-menusublist first-level" role="menu">
+                            <li><a href="/men-rings"> Rings </a></li>
+                            <li><a href="/men-bands"> Bands </a></li>
+                            <li><a href="/men-necklaces"> Necklaces </a></li>
+                            <li><a href="/men-earrings"> Earrings </a></li>
+                            <li><a href="/men-bracelets"> Bracelets </a></li>
+                            <li><a href="/men-charms-pendants"> Charms &amp; Pendants </a></li>
+                            <li><a href="/men-chains"> Chains </a></li>
+                            <li><a href="/men-coin-jewelry"> Coin Jewelry </a></li>
+                            <li><a href="/men-cufflinks-studs"> Cuff Links &amp; Studs </a></li>
+                            <li><a href="/men-tie-clips"> Tie Clips </a></li>
+                            <li class="image hidden-xs hidden-sm"><a href="/mens"><img src="/images/thumbs/0000914_mens_450.png" alt="Mens Jewelry & Accessories from SilverQueen" /><span class="caption">Men's Jewelry & Accessories from SilverQueen</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><span class="fal fa-angle-down visible-xs"></span> <a class="dropdown-toggle"
+                            href="/home#selltous" role="button" aria-expanded="false"> We Buy Silver/Gold </a>
+                    </li>
+                @* @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
+                @if (Model.DisplayHomepageMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("Homepage")">@T("Homepage")</a></li>
+                }
+                @if (!Model.UseAjaxMenu)
+                {
+                    var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+                    @foreach (var category in rootCategories)
+                    {
+                        var categoryLineModel = new TopMenuModel.CategoryLineModel
+                        {
+                            Category = category
+                        };
+                        @await Html.PartialAsync("_CategoryLine.TopMenu", categoryLineModel)
+                    }
+                }
+                @foreach (var topic in Model.Topics)
+                {
+                    <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                }
+                @if (Model.NewProductsEnabled && Model.DisplayNewProductsMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a></li>
+                }
+                @if (Model.DisplayProductSearchMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
+                }
+                @if (Model.DisplayCustomerInfoMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                }
+                @if (Model.BlogEnabled && Model.DisplayBlogMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+                }
+                @if (Model.ForumEnabled && Model.DisplayForumsMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+                }
+                @if (Model.DisplayContactUsMenuItem)
+                {
+                    <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                } *@
+                @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMenuAfter, additionalData = Model })
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</div>
+@if (Model.UseAjaxMenu)
+{
+    <script asp-location="Footer">
+            $(document).ready(function () {
+                $("#mobile-menu .dropdown .fa-angle-down").click(function () {
+                    var $this = $(this);
+                    $this.siblings("ul.dropdown-menu").slideToggle("slow", function () {
+                        if ($this.siblings("ul.dropdown-menu").css('display') == 'block')
+                            $this.addClass("rotate");
+                        else if ($this.siblings("ul.dropdown-menu").css('display') == 'none')
+                            $this.removeClass("rotate");
+                    });
+                });
+                var localized_data = {
+                    AjaxFailure: "@T("MainMenu.AjaxFailure")"
+                };
+                mainMenu.init('@Url.RouteUrl("GetCatalogRoot")', '@Url.RouteUrl("GetCatalogSubCategories")', 'ul.top-menu.notmobile', 'ul.top-menu.mobile', localized_data);
+            });
+    </script>
+    <script src="~/js/public.menu.js" asp-location="Footer"></script>
+}
+else
+{
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            $("#mobile-menu .dropdown .fa-angle-down").click(function () {
+                var $this = $(this);
+                $this.siblings("ul.dropdown-menu").slideToggle("slow", function () {
+                    if ($this.siblings("ul.dropdown-menu").css('display') == 'block')
+                        $this.addClass("rotate");
+                    else if ($this.siblings("ul.dropdown-menu").css('display') == 'none')
+                        $this.removeClass("rotate");
+                });
+            });
+        });
+    </script>
+}
+<script asp-location="Footer">
+
+    $(document).ready(function () {
+        $('.nav.navbar-nav li a').each(function() {
+            if ($(this).attr('href') == window.location.pathname) {
+                $(this).parents('li').addClass('current');
+            }
+        });
+
+        @* $('.nav.navbar-nav > li').each(function() {
+            var count = $(this).children('ul').children('li').length;
+            var t = 0;
+            $(this).children('ul').children('li').each(function() {
+                if ($(this).children('ul').length > 0) {
+                    t++;
+                }
+            })
+            if (t == count) {
+                $(this).addClass("megamenu");
+            }
+        }); *@
+
+        // $('.nav.navbar-nav .megamenu').each(function() {
+        //     var offsetL = $(this).position().left;
+        //     $(this).children('.dropdown-menu').attr("style", "transform: translate(-"+offsetL+"px, 0)");
+        // });
+// 
+        // setTimeout(function() {
+        //     $('.nav.navbar-nav .megamenu').each(function() {
+        //         var offsetL = $(this).position().left;
+        //         $(this).children('.dropdown-menu').attr("style", "transform: translate(-"+offsetL+"px, 0)");
+        //     });
+        // }, 1000)
+    });
+
+    //$(document).load(function() {
+    //    $('.nav.navbar-nav .megamenu').each(function() {
+    //        var offsetL = $(this).position().left;
+    //        $(this).children('.dropdown-menu').attr("style", "transform: translate(-"+offsetL+"px, 0)");
+    //    });
+    //});
+
+    //$(window).resize(function() {
+//
+    //    if (window.innerWidth > 768) {
+//
+    //        $('.nav.navbar-nav .megamenu').each(function() {
+    //            var offsetL = $(this).position().left;
+    //            $(this).children('.dropdown-menu').attr("style", "transform: translate(-"+offsetL+"px, 0)");
+    //        })
+    //    }
+    //});
+</script>

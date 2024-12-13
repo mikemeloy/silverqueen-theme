@@ -1,0 +1,7 @@
+﻿@model TopicModel
+@if (!Model.IsPasswordProtected)
+{
+    @if (!string.IsNullOrEmpty(Model.Body)) {
+        @Html.Raw(Model.Body)
+    }
+}

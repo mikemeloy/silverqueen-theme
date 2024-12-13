@@ -1,0 +1,33 @@
+﻿@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@using Nop.Services.Helpers
+@using Nop.Web.Framework.UI
+
+@inject CatalogSettings catalogSettings
+@inject IThemeContext themeContext
+@inject IUserAgentHelper userAgentHelper
+
+@inject IWorkContext workContext
+
+@{
+    //add main CSS file
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/css/main.styles.responsive.css");
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/css/main.styles.css");
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/css/bootstrap.min.css");
+
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/css/owl.carousel.min.css");
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/fonts/fontawesome/css/fontawesome.min.css");
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/fonts/fontawesome/css/light.min.css");
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/fonts/fontawesome/css/brands.min.css");
+
+    NopHtml.AppendCssFileParts($"~/Themes/SilverQueen-2023/Content/css/magnific.min.css");
+
+    //add swiper css file
+    if (catalogSettings.DisplayAllPicturesOnCatalogPages)
+    {
+        NopHtml.AppendCssFileParts("~/lib_npm/swiper/swiper-bundle.min.css");
+    }
+
+    //add jQuery UI css file
+    NopHtml.AppendCssFileParts("~/lib_npm/jquery-ui-dist/jquery-ui.min.css");
+}

@@ -1,0 +1,128 @@
+﻿@model FooterModel
+
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Domain.Topics
+
+@inject IWorkContext workContext
+
+<div class="footer">
+    <div class="footer-upper">
+        <div class="container">
+            <div class="newsletter-wrapper">    
+                @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "FootNewsLetterCTA" })
+                @await Component.InvokeAsync(typeof(NewsletterBoxViewComponent))
+                <p class="small-info">* By subscribing you agree to receive marketing communications from us.<br />
+                We’ll treat your information in accordance with our <a href="/conditions-of-use" title="Silver Queen Terms of Use">Terms of Use</a> and <a href="/privacy-notice" title="Privacy Policy">Privacy Policy</a></p>
+            </div>
+        </div>
+        <script>
+            $('.newsletter-wrapper img').unwrap().wrap('<div class="newsletterimageblock"></div>');
+            @* $('.topic-html-content-body, .topic-html-content-body > *:first-child').unwrap(); *@
+            $('.newsletter-wrapper .newsletterimageblock ~ *').wrapAll('<div class="newslettercontentblock"></div>');
+        </script>
+    </div>
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row fb-md-parent fb-md-row fb-md-ai-center">
+                <div class="col-md-5 col-lg-3">
+                    <a href="@Url.RouteUrl("Homepage")">
+                        <img class="footer-logo" alt="@Model.StoreName" src="/images/uploaded/sq_logo_crown.jpg">
+                    </a>
+                </div>
+                <div class="col-md-7 col-lg-4">
+                    <div class="footer-contact-info">
+                        @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "ContactInfo" })
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-5">
+                    <a class="footer-map" href="https://goo.gl/maps/oJpHEVztL7Xmd4ik9" target="_blank" title="@Model.StoreName - Find Us On Google Maps">
+                        <img alt="@Model.StoreName - Find Us On Google Maps" src="/images/uploaded/sq-custom-map.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container foot-menu-wrap">
+            <div class="col-md-8 col-lg-9">
+                <div class="footer-menu">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "MenuCustomerCare" })
+                        </div>
+                        <div class="col-md-3">
+                            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "MenuSilverQueen" })
+                        </div>
+                        <div class="col-md-3">
+                            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "MenuShop" })
+                        </div>
+                        <div class="col-md-3">
+                            @await Component.InvokeAsync(typeof(TopicBlockViewComponent), new { systemName = "MenuServices" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <br class="visible-xs visible-sm">
+                @if (Model.DisplayContactUsFooterItem)
+                {
+                    <a class="btn btn-outline" href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a>
+                }
+                <div class="pull-md-right">
+                    @await Component.InvokeAsync(typeof(SocialButtonsViewComponent))
+                    <a class="google-reviews-badge" href="https://www.google.com/search?q=The+Silver+Queen%2C+Largo+FL" target="_blank">
+                        <div class="google-logo"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="injected-svg" data-src="https://static.elfsight.com/icons/app-all-in-one-reviews-icons-google-multicolor.svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="#2A84FC" d="M21.579 12.234c0-.677-.055-1.359-.172-2.025h-9.403v3.839h5.384a4.615 4.615 0 0 1-1.992 3.029v2.49h3.212c1.886-1.736 2.97-4.3 2.97-7.333Z"></path><path fill="#00AC47" d="M12.004 21.974c2.688 0 4.956-.882 6.608-2.406l-3.213-2.491c-.893.608-2.047.952-3.392.952-2.6 0-4.806-1.754-5.597-4.113H3.095v2.567a9.97 9.97 0 0 0 8.909 5.491Z"></path><path fill="#FFBA00" d="M6.407 13.916a5.971 5.971 0 0 1 0-3.817V7.531H3.095a9.977 9.977 0 0 0 0 8.953l3.312-2.568Z"></path><path fill="#FC2C25" d="M12.004 5.982a5.417 5.417 0 0 1 3.824 1.494l2.846-2.846a9.581 9.581 0 0 0-6.67-2.593A9.967 9.967 0 0 0 3.095 7.53l3.312 2.57c.787-2.363 2.996-4.117 5.597-4.117Z"></path></svg></div>
+                        <div class="badge-title">Google Rating</div>
+                        <div class="star-rating" data-rating="@T("googlereviewsbadge.rating")">
+                            <div class="star">
+                                <span class="star-unfilled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                                <span class="star-filled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                            </div>
+                            <div class="star">
+                                <span class="star-unfilled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                                <span class="star-filled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                            </div>
+                            <div class="star">
+                                <span class="star-unfilled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                                <span class="star-filled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                            </div>
+                            <div class="star">
+                                <span class="star-unfilled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                                <span class="star-filled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                            </div>
+                            <div class="star">
+                                <span class="star-unfilled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                                <span class="star-filled"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"/></svg></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="shop-main-link"><a href="https://www.silverqueen.com">Shop our main site at SilverQueen.com for silver, gold, home decor and many other fine items</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-lower">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="footer-disclaimer">
+                        @T("Content.CopyrightNotice", DateTime.Now.Year.ToString(), Model.StoreName)
+                        <ul class="list-inline d-between-2x">
+                            @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+                            {
+                                <li><a href="@(Url.RouteUrl<Topic>(new { SeName = topic.SeName }))">@topic.Name</a></li>
+                            }
+                            <li><a href="/disclaimer">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.Footer, additionalData = Model })
+</div>

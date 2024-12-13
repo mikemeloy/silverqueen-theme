@@ -1,0 +1,53 @@
+﻿<div class="header">
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <div class="header-upper">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 hidden-xs hidden-md">
+                    <p>Honesty, integrity, and reliability for 50 years</p>
+                </div>
+                <div class="col-md-6 col-lg-4 text-center text-md-left text-lg-center hidden-xs hidden-sm">
+                    <a href="/newproducts">Shop New Arrivals</a>
+                </div>
+                <div class="col-sm-6 col-lg-4 text-right">
+                    <ul class="list-inline">
+                        <li><a href="https://www.silverqueen.com/store/The-Silver-Queen-Inc.-Blog-and-about-us-page" title="About SilverQueen">About</a></li>
+                        <li><a href="/contactus" title="Customer Support">Support</a></li>
+                        <li><b><a href="tel:18002623134" title="Call SilverQueen">1-800-262-3134</a></b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMiddle })
+    <div class="header-lower">
+        <div class="container">
+            <div class="row fb-xs-row fb-xs-parent fb-xs-ai-center">
+                <div class="col-xs-4">
+                    <div class="mobile-menu-toggle">
+                        <button aria-expanded="false" data-target="#mobile-menu" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="search-box">
+                        @await Component.InvokeAsync(typeof(SearchBoxViewComponent))
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="header-logo">
+                        @await Component.InvokeAsync(typeof(LogoViewComponent))
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="header-links-wrapper pull-right">
+                        @await Component.InvokeAsync(typeof(HeaderLinksViewComponent))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderAfter })
+</div>
