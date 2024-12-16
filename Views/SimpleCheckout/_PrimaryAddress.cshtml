@@ -76,20 +76,24 @@
 <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
     @foreach (var address in Model.ExistingPrimaryAddresses)
     {
-        <fieldset data-shipping data-addressid="@address.Id" onclick="onUserSelectNewAddress(`${@address.Id}`)">
-            <div>@address.Address1</div>
-            <div>@address.City</div>
-            <div>@address.ZipPostalCode</div>
+        <fieldset data-shipping data-addressid="@address.Id" onclick="onUserSelectNewAddress(`@address.Id`)">
+            <div data-street>@address.Address1</div>
+            <div data-city>@address.City</div>
+            <div data-zip>@address.ZipPostalCode</div>
             <i onclick="onUserAddNewOrEditAddress_Click(`${@address.Id}`)">Edit</i>
         </fieldset>
     }
-    <fieldset data-addressid data-open-new style="display:grid;align-content:center">
-        <div style="text-align:center">New Address</div>
-    </fieldset>
+
+    @if(Model.ExistingPrimaryAddresses.Count() == 0) {
+        <fieldset data-addressid data-open-new style="display:grid;align-content:center">
+            <div style="text-align:center">New Address</div>
+        </fieldset>
+    }
+
     @if (Model.PluginSettings.AllowSecondaryAddress)
     {
-        <fieldset data-open-other style="margin-bottom:2rem">
-            <div style="text-align:center">Select An Alternative Shipping Address</div>
+        <fieldset data-open-other style="margin-bottom:2rem;text-align:center">
+           Select An Alternative Shipping Address
         </fieldset>
     }
 </div>
@@ -104,20 +108,18 @@
         </aside>
     </header>
     <main>
-        @if (Model.PluginSettings.AllowToSelectTheAddress && Model.ExistingPrimaryAddresses.Count() >= 1)
-        {
-            <div class="inputs" hidden>
-                <nop-label asp-for="ExistingPrimaryAddresses" class="labelforinputs" />
-                <select name="existingprimaryaddresses" id="existingprimaryaddresses"
-                        onchange="changePrimaryAddress(this.value)" autocomplete="off">
-                    @foreach (var address in Model.ExistingPrimaryAddresses)
-                    {
-                        <option value="@(address.Id)">@(address.ConvertToString())</option>
-                    }
-                    <option value="0">@T("account.customeraddresses.addnew")</option>
-                </select>
-            </div>
-        }
+      
+    <div class="inputs" hidden>
+        <nop-label asp-for="ExistingPrimaryAddresses" class="labelforinputs" />
+        <select name="existingprimaryaddresses" id="existingprimaryaddresses"
+                onchange="changePrimaryAddress(this.value)" autocomplete="off">
+            @foreach (var address in Model.ExistingPrimaryAddresses)
+            {
+                <option value="@(address.Id)">@(address.ConvertToString())</option>
+            }
+        </select>
+    </div>
+        
 
         <div class="inputs">
             <nop-label asp-for="PrimaryAddress.FirstName" class="labelforinputs" />

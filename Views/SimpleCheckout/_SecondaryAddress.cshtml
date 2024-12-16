@@ -11,10 +11,10 @@
 
 <div class="secondary-address-description" @(!Model.UseSecondaryAddress ? Html.Raw("style='display: none;' ") : null)>
 
-    <fieldset data-shipping data-addressid style="display:flex;flex-direction:column">
-        <div>@Model.SecondaryAddress.Address1</div>
-        <div>@Model.SecondaryAddress.City</div>
-        <div>@Model.SecondaryAddress.ZipPostalCode</div>
+    <fieldset data-shipping data-addressid data-secondary style="display:flex;flex-direction:column">
+        <div data-address>@Model.SecondaryAddress.Address1</div>
+        <div data-city>@Model.SecondaryAddress.City</div>
+        <div data-zip>@Model.SecondaryAddress.ZipPostalCode</div>
         <i onclick="editSecondaryAddress()">Edit</i>
     </fieldset>
      

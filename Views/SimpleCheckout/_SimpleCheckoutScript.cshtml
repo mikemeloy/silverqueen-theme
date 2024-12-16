@@ -185,49 +185,14 @@
     function saveSecondaryAddress()
     {
         var address=getSecondaryAddress() ;
-        if (address!= undefined) {
-            currentSecondaryAddress=address;
+        if (address != undefined) {
+            const container = $("[data-secondary]");
+            currentSecondaryAddress = address;
 
-            $(".secondary-address-description-message .name").text(address.FirstName+" "+address.LastName);
-            $(".secondary-address-description-message .email").text("@T("Address.Fields.Email"): "+address.Email);
-            $(".secondary-address-description-message .phone").text("@T("Address.Fields.PhoneNumber"): "+address.PhoneNumber);
-            $(".secondary-address-description-message .fax").text("@T("Address.Fields.FaxNumber"): "+address.FaxNumber);
-            $(".secondary-address-description-message .company").text(address.Company);
-            $(".secondary-address-description-message .address1").text(address.Address1);
-            $(".secondary-address-description-message .address2").text(address.Address2);
-            $(".secondary-address-description-message .county").text(address.County);
-            var cityStateZip="";
-                @if (Model.SecondaryAddress.CityEnabled)
-                {
-                    <text>cityStateZip = address.City;</text>
-                    if (Model.SecondaryAddress.StateProvinceEnabled || Model.SecondaryAddress.ZipPostalCodeEnabled)
-                    {
-                        <text>cityStateZip += ",";</text>
-                    }
-                }
-                @if (Model.SecondaryAddress.StateProvinceEnabled)
-                {
-                    <text>
-                    if (cityStateZip.length>0)
-                    {
-                        cityStateZip =cityStateZip+ " ";
-                    }
-                    cityStateZip = cityStateZip+address.StateProvinceName;
-                    </text>
-                }
-                @if (Model.SecondaryAddress.ZipPostalCodeEnabled)
-                {
-                    <text>
-                    if (cityStateZip.length>0)
-                    {
-                        cityStateZip = cityStateZip+" ";
-                    }
-                    cityStateZip = cityStateZip+address.ZipPostalCode;
-                    </text>
-                }
-            $(".secondary-address-description-message .city-state-zip").text(cityStateZip);
-            $(".secondary-address-description-message .country").text(address.Country);
-
+            container.children("[data-address]").text(address.Address1);
+            container.children("[data-city]").text(address.City);
+            container.children("[data-zip]").text(address.ZipPostalCode);
+             
             $(".secondary-address-description").show();
         }
         if ($(secondaryaddress_popwindow_selector).hasClass('ui-dialog-content'))
@@ -305,7 +270,11 @@
         if (isNewSecondaryAddress)
         {
             $(".secondary-address-description").hide();
-            $("#@Html.IdFor(model => model.UseSecondaryAddress)").prop( "checked", false );
+            const chx = $("#@Html.IdFor(model => model.UseSecondaryAddress)"),
+                clearEvent = new Event('cancel');
+
+            chx.prop("checked", false);            
+            chx.get(0).dispatchEvent(clearEvent);
         }
     };
 
@@ -345,8 +314,7 @@
     }
 
     function setAddress(isPrimary,address)
-    {
-        console.dir({ isPrimary, address });
+    { 
         __ShimpleCheckout_SkipLoading=true;
         if (address!= undefined) {
             if (isPrimary)
