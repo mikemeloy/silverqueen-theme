@@ -43,17 +43,22 @@
 }
 
 <input asp-for="PrimaryAddress.Id" type="hidden" />
-<div class="inputs">
-    <h3 class="primary-address-title">
+<div class="background">
+    <h3>
         @if (Model.PluginSettings.UseBillingAddressAsPrimary)
         {
-            @T("FoxNetSoft.Plugin.Misc.SimpleCheckout.MainWindow.Title.BillingAddress")
+        @T("FoxNetSoft.Plugin.Misc.SimpleCheckout.MainWindow.Title.BillingAddress")
         }
         else
         {
-            @T("FoxNetSoft.Plugin.Misc.SimpleCheckout.MainWindow.Title.ShippingAddress")
+        @T("FoxNetSoft.Plugin.Misc.SimpleCheckout.MainWindow.Title.ShippingAddress")
         }
     </h3>
+    @if (Model.PluginSettings.AllowSecondaryAddress)
+    {
+    <a href="#" title="Use Alternate Shipping Address"><i data-open-other class="fal fa-truck"></i></a> 
+    }
+    <a href="/customer/addresses" title="Manage Addresses"><i class="fal fa-tasks"></i></a>
 </div>
 @if (!impersonated)
 { 
@@ -73,27 +78,27 @@
     </dialog>
 }
 
-<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+<div data-address-list> 
     @foreach (var address in Model.ExistingPrimaryAddresses)
     {
-        <fieldset data-shipping data-addressid="@address.Id" onclick="onUserSelectNewAddress(`@address.Id`)">
-            <div data-street>@address.Address1</div>
-            <div data-city>@address.City</div>
-            <div data-zip>@address.ZipPostalCode</div>
-            <i onclick="onUserAddNewOrEditAddress_Click(`${@address.Id}`)">Edit</i>
-        </fieldset>
+    <fieldset data-shipping data-addressid="@address.Id" onclick="onUserSelectNewAddress(`@address.Id`)">
+        <div data-street>@address.Address1</div>
+        <div data-city>@address.City</div>
+        <div data-zip>@address.ZipPostalCode</div>
+        @if (@address.Id == Model.PrimaryAddress.Id)
+        {
+        <i onclick="onUserAddNewOrEditAddress_Click(`@address.Id`)">Edit</i>
+        }
+    </fieldset>
     }
 
-    @if(Model.ExistingPrimaryAddresses.Count() == 0) {
-        <fieldset data-addressid data-open-new style="display:grid;align-content:center">
-            <div style="text-align:center">New Address</div>
-        </fieldset>
-    }
-
-    @if (Model.PluginSettings.AllowSecondaryAddress)
+    @if (Model.ExistingPrimaryAddresses.Count() == 0)
     {
-        <fieldset data-open-other style="margin-bottom:2rem;text-align:center">
-           Select An Alternative Shipping Address
+        <fieldset data-primary-address data-shipping data-addressid="@Model.PrimaryAddress.Id" onclick="onUserSelectNewAddress(`@Model.PrimaryAddress.Id`)">
+            <div data-street>&nbsp;</div>
+            <div data-city><aside>No Address on File</aside></div>
+            <div data-zip>&nbsp;</div> 
+            <i onclick="onUserAddNewOrEditAddress_Click(`@Model.PrimaryAddress.Id`)">Add Primary Address</i>
         </fieldset>
     }
 </div>

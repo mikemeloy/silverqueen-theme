@@ -1,34 +1,60 @@
-[data-addressid] {
+/* [data-addressid] {
     all: unset;
     box-sizing: border-box;
-    flex: 0 50%;
+    flex: 1;
     padding: 1rem;
     background-color: var(--red);
     color: #fff;
-    border-radius: 5px;
-    border: 1px solid #e4e4e4;
     cursor: pointer;
-    box-shadow: 5px 5px 15px #c4c4c4;
     transition: background-color .3s ease-in-out;
     position: relative;
+    font-size: 1.5rem;
 
     & i {
         position: absolute;
         bottom: 1rem;
         right: 1rem;
+        text-decoration: underline;
     }
 
     &:hover {
         background-color: var(--dark);
     }
+} */
 
+[data-addressid] {
+    all: unset;
+    box-sizing: border-box;
+    flex: 1;
+    padding: 1rem;
+    background-color: transparent;
+    color: var(--dark);
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+    position: relative;
+    font-size: 1.5rem;
+    border: 2px solid var(--dark);
+    border-radius: 6px;
+
+    & i {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        text-decoration: underline;
+    }
+
+    &:hover {
+        color: #fff;
+        background-color: var(--red);
+    }
 }
 
-[data-shipping="true"] {
+[data-shipping="true"], [data-billing="true"] {
+    color: #fff;
     background-color: var(--dark);
 }
 
-[data-open-other] {
+[data-btn] {
     all: unset;
     width: 100%;
     box-sizing: border-box;
@@ -39,12 +65,35 @@
     border-radius: 5px;
     margin-top: 3rem;
     transition: all .3s ease-in-out;
+    text-align: center;
+    margin-bottom: 2rem;
 
     &:hover {
         background-color: var(--dark);
         color: #fff;
     }
+}
 
+[data-primary-address] {
+    flex: 1;
+
+    aside {
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+[data-shipping-address] {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background-color: var(--red);
+
+    i {
+        padding: 1rem;
+        cursor: pointer;
+        font-size: 2rem;
+    }
 }
 
 dialog[data-new-address] {
@@ -125,4 +174,32 @@ dialog[data-new-address] {
     width: 85px;
     margin-left: auto;
     cursor: pointer;
+}
+
+[data-address-list] {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding: 1rem;
+}
+
+#form-fns-simplecheckout .simple-checkout-data-left {
+    padding-top: 0;
+
+    .background {
+        display: flex;
+        align-items: center;
+        background-color: var(--red);
+    }
+
+    h3 {
+        flex: 1;
+    }
+
+    a {
+        color: #fff;
+        padding: 0 1rem;
+        font-size: 2.7rem;
+    }
 }

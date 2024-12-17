@@ -10,14 +10,15 @@
 <input asp-for="SecondaryAddress.Id" type="hidden" />
 
 <div class="secondary-address-description" @(!Model.UseSecondaryAddress ? Html.Raw("style='display: none;' ") : null)>
-
-    <fieldset data-shipping data-addressid data-secondary style="display:flex;flex-direction:column">
-        <div data-address>@Model.SecondaryAddress.Address1</div>
-        <div data-city>@Model.SecondaryAddress.City</div>
-        <div data-zip>@Model.SecondaryAddress.ZipPostalCode</div>
-        <i onclick="editSecondaryAddress()">Edit</i>
-    </fieldset>
-     
+    <div data-shipping-address><h3>Shipping Address</h3><i class="fal fa-times"></i></div>
+    <div data-address-list>
+        <fieldset data-billing="true" data-addressid data-secondary style="display:flex;flex-direction:column">
+            <div data-address>@Model.SecondaryAddress.Address1</div>
+            <div data-city>@Model.SecondaryAddress.City</div>
+            <div data-zip>@Model.SecondaryAddress.ZipPostalCode</div>
+            <i onclick="editSecondaryAddress()">Edit</i>
+        </fieldset>
+    </div>
 </div>
 
 <div id="secondary-address-popwindow" title="@Model.Locales["PoupWindow.Title"]" style="display:none;">
