@@ -1024,7 +1024,7 @@
     }
 
     function fns_simple_checkout_setevent(selector)
-    { 
+    {
         $("#"+selector)[0].oninput = keypressrefresshmethod;
     }
 
@@ -1071,9 +1071,7 @@
 
     $(document).ready(function () {
         currentSecondaryAddress=getSecondaryAddress();
-
-        $("#@Html.IdFor(model => model.PrimaryAddress.StateProvinceId)").change(function(){adjustChangeAddressMethod(1)});
-     
+ 
         $("#@Html.IdFor(model => model.UseSecondaryAddress)").change(showSecondaryAddressWindow);
         $("#@Html.IdFor(model => model.UseRewardPoints)").change(fns_simple_checkout_changecart);
 
@@ -1123,8 +1121,7 @@
                         $.each(data, function (id, option) {
                             ddlStates.append($('<option></option>').val(option.id).html(option.name));
                         });
-                        statesProgress.hide();
-                        adjustChangeAddressMethod(1);
+                        statesProgress.hide();                        
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         alert('Failed to retrieve states.');

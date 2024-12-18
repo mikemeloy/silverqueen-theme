@@ -1,17 +1,11 @@
-let validation = {
-    streetRequired: false,
-    cityRequired: false,
-    zipRequired: false,
-    phoneRequired: false
-};
-
 const
+    outTheDoorPrice = document.querySelector('.outthedoorprice-widget-container'),
     btnUseSecondaryAddress = document.querySelector('[data-open-other]'),
     chxUseSecondaryAddress = document.getElementById('UseSecondaryAddress'),
-    btnNewAddress = document.querySelector('[data-open-new]'),
     newAddressDialog = document.querySelector('dialog[data-new-address]'),
     btnSubmitAddress = document.querySelector('[data-billing-address-submit]'),
     btnCloseSecondaryAddress = document.querySelector('[data-shipping-address] i'),
+    primaryHeader = document.querySelector('[data-primary-header]'),
     isBillingAddressValid = () => {
         const isValid = window.validatePrimaryAddress?.();
 
@@ -28,18 +22,26 @@ const
         });
     },
     onUserSelectNewAddress = (id) => {
-        const el = document.getElementById('existingprimaryaddresses'),
-            changeEvent = new Event('change');
+        const primaryAddressDdl = document.getElementById('existingprimaryaddresses'),
+            syntheticEvent = new Event('change'),
+            primaryAddress = window.getPrimaryAddress?.();
 
-        if (!!el) {
-            el.value = id;
-            el.dispatchEvent(changeEvent);
+        if (!primaryAddressDdl) {
+            return;
         }
+
+        if (primaryAddress.Id === id) {
+            console.log('clicked same address');
+            return;
+        }
+
+        primaryAddressDdl.value = id;
+        primaryAddressDdl.dispatchEvent(syntheticEvent);
 
         markShippingAddress(id);
     },
-    onUserAddNewOrEditAddress_Click = (id = 0) => {
-        onUserSelectNewAddress(id);
+    onUserAddNewOrEditAddress_Click = (addressId) => {
+        onUserSelectNewAddress(addressId);
         newAddressDialog.showModal();
     },
     onUserSubmitAddress_Click = async () => {
@@ -74,15 +76,33 @@ const
         const primaryAddressId = document.getElementById('PrimaryAddress_Id');
         return primaryAddressId?.value ?? '0';
     },
+    onOutTheDoorPriceSuccess = ({ detail }) => {
+        console.dir(detail);
+        window.adjustOrderSummary?.();
+    },
     addEventListeners = () => {
         btnUseSecondaryAddress.addEventListener('click', () => chxUseSecondaryAddress.click());
-        btnNewAddress?.addEventListener('click', onUserAddNewOrEditAddress_Click);
         btnSubmitAddress.addEventListener('click', onUserSubmitAddress_Click);
         btnCloseSecondaryAddress.addEventListener('click', () => chxUseSecondaryAddress.click());
+        outTheDoorPrice.addEventListener('otdapplied', onOutTheDoorPriceSuccess);
+    },
+    setupObserver = () => {
+        const
+            options = {
+                root: document.querySelector(".simple-checkout-data-left"),
+                rootMargin: "0px",
+                threshold: 1.0,
+            },
+            onVisibilityChange = ([{ isIntersecting }]) => {
+                const lbl = isIntersecting ? "Billing Address" :"Billing / Shipping Address";
+                primaryHeader.innerHTML = lbl;
+            },
+            observer = new IntersectionObserver(onVisibilityChange, options);
+
+        observer.observe(btnCloseSecondaryAddress);
     },
     closeAddressModal = () => newAddressDialog.close();
 
 addEventListeners();
 markShippingAddress(getPrimaryAddressId());
-
-
+setupObserver();
